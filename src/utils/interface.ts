@@ -1,16 +1,16 @@
-export enum AIModels {
+export enum AiModels {
   OPEN_AI = "OPEN_AI",
   GEMINI_AI = "GEMINI_AI",
 }
 
 export interface IGenerate {
-  ai: AIModels;
+  ai: AiModels;
   input: string;
   usecase: string;
   model?: string;
 }
 
-export enum aiTools {
+export enum AiTools {
     COLD_EMAILER = "cold_emailer"
 }
 

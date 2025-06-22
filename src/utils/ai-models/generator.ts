@@ -1,6 +1,6 @@
 import { GoogleGenAI } from "@google/genai";
 import OpenAI from "openai";
-import { AIModels, IGenerate } from "../interface";
+import { AiModels, IGenerate } from "../interface";
 import { InternalServerError } from "../errors";
 import { instructions } from "./instructions";
 
@@ -26,7 +26,7 @@ class AIGen {
       let response: string;
 
       switch (ai) {
-        case AIModels.GEMINI_AI: {
+        case AiModels.GEMINI_AI: {
           const geminiResponse = await this.geminiAI.models.generateContent({
             model: model ?? "gemini-1.5-flash",
             contents: [
@@ -42,7 +42,7 @@ class AIGen {
           break;
         }
 
-        case AIModels.OPEN_AI: {
+        case AiModels.OPEN_AI: {
           const openaiResponse = await this.openAI.chat.completions.create({
             model: model ?? "gpt-4o",
             messages: [

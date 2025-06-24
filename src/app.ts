@@ -11,14 +11,17 @@ class App {
   public app: Express;
   constructor() {
     this.app = express();
+    this.configureMiddlewares();
+    this.configureRoutes();
   }
 
   configureMiddlewares() {
     this.app.use(express.json());
+    this.app.use(express.text());
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(
       cors({
-        origin: process.env.FRONTEND_URL || "http://localhost:5179",
+        origin: "http://localhost:5179",
       })
     );
     this.app.use(
@@ -39,9 +42,9 @@ class App {
         res.send("Health check is working");
       }
     );
-    this.app.use("*", (_req: Request, _res: Response, next: NextFunction) => {
-      return next(new NotFoundError("Route not found"));
-    });
+    // this.app.all("/*", (_req: Request, _res: Response, next: NextFunction) => {
+    //   return next(new NotFoundError("Route not found"));
+    // });
     this.app.use(errorHandler);
   }
 

@@ -15,13 +15,11 @@ class ToolService extends ResponseService implements IToolService {
 
   createTool = async (payload: ICreateTool): Promise<IServiceResponse> => {
     await this.toolRepo.create(payload);
-
     return this.serviceResponse(200, {}, "Tool created successfully");
   };
 
   createTools = async (payload: ICreateTool[]): Promise<IServiceResponse> => {
     await this.toolRepo.insertMany(payload);
-
     return this.serviceResponse(200, {}, "Tools created successfully");
   };
 }

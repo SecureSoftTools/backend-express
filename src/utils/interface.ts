@@ -45,3 +45,8 @@ export interface ICloudinaryResponse {
   secureUrl: string;
   url: string;
 }
+
+export interface IPagination {
+  skip: number;
+  take: number;
+}

@@ -19,8 +19,8 @@ const transporter = nodemailer.createTransport({
     rejectUnauthorized: false,
   },
   connectionTimeout: 10000,
-  logger: true,
-  debug: true,
+  logger: false,
+  debug: false,
 });
 
 transporter.verify((error, _success) => {

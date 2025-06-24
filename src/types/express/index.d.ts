@@ -1,10 +1,13 @@
 import { Express } from "express";
-import { IGetRequestUser } from "../../utils/interface";
+import { IPagination, IGetRequestUser } from "../../utils/interface";
 
 declare global {
   namespace Express {
     interface Request {
+      pagination: IPagination;
       payload: any;
+      searchQuery: { [key: string]: any };
+      sortQuery: { [key: string]: string };
       user?: IGetRequestUser;
     }
   }

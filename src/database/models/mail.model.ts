@@ -10,6 +10,10 @@ const mailSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    usecase: {
+      type: String,
+      required: true,
+    },
     used: {
       type: Number,
       default: 0,

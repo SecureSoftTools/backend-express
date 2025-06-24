@@ -13,7 +13,7 @@ export interface IGenerate {
 }
 
 export enum AiTools {
-    COLD_EMAILER = "cold_emailer"
+  COLD_EMAILER = "cold_emailer",
 }
 
 export interface IServiceResponse {
@@ -32,4 +32,16 @@ export interface IGetRequestUser {
   id: string;
   name: string;
   email: string;
+}
+
+export interface ICreateMail {
+  subject: string;
+  content: string;
+  usecase: string;
+  used: number;
+}
+
+export interface ICloudinaryResponse {
+  secureUrl: string;
+  url: string;
 }

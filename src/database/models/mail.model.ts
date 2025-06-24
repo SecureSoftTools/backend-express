@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 const mailSchema = new mongoose.Schema(
   {
@@ -19,6 +19,13 @@ const mailSchema = new mongoose.Schema(
       default: 0,
       required: false,
     },
+    users: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+        required: true,
+      },
+    ],
   },
   {
     timestamps: true,

@@ -1,19 +1,18 @@
 import mongoose, { Schema } from "mongoose";
 
-const resumeSchema = new mongoose.Schema(
+const toolSchema = new mongoose.Schema(
   {
-    filename: {
+    name: {
       type: String,
-      required: true,
+      require: true,
     },
-    url: {
+    description: {
       type: String,
-      required: true,
+      require: true,
     },
-    latest: {
-      type: Boolean,
-      default: true,
-      required: false,
+    icon: {
+      type: String,
+      require: true,
     },
     users: [
       {
@@ -28,4 +27,4 @@ const resumeSchema = new mongoose.Schema(
   }
 );
 
-export = mongoose.model("Resume", resumeSchema);
+export = mongoose.model("Tool", toolSchema);

@@ -5,6 +5,7 @@ import cors from "cors";
 import { NotFoundError } from "./utils/errors/NotFoundError";
 import errorHandler from "./utils/error.handler";
 import AppDataSource from "./database/db.config";
+import { routes } from "./routes";
 
 class App {
   public app: Express;
@@ -31,7 +32,7 @@ class App {
   }
 
   configureRoutes() {
-    // this.app.use("/api");
+    this.app.use("/api", routes);
     this.app.get(
       "/api/health",
       (_req: Request, res: Response, _next: NextFunction) => {

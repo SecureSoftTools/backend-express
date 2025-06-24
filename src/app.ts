@@ -4,7 +4,7 @@ import helmet from "helmet";
 import cors from "cors";
 import { NotFoundError } from "./utils/errors/NotFoundError";
 import errorHandler from "./utils/error.handler";
-import AppDataSource from "./config/db.config";
+import AppDataSource from "./database/db.config";
 
 class App {
   public app: Express;
@@ -17,7 +17,7 @@ class App {
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(
       cors({
-        origin: "http://localhost:5179",
+        origin: process.env.FRONTEND_URL || "http://localhost:5179",
       })
     );
     this.app.use(

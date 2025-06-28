@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from "express";
-import { IServiceResponse } from "../../utils/interface";
+import { IPagination, IServiceResponse } from "../../utils/interface";
 
 export interface IToolService {
-  getTools(): Promise<IServiceResponse>;
+  getTools(pagination: IPagination): Promise<IServiceResponse>;
   getToolById(toolId: string): Promise<IServiceResponse>;
   createTool(payload: ICreateTool): Promise<IServiceResponse>;
   createTools(payload: ICreateTool[]): Promise<IServiceResponse>;

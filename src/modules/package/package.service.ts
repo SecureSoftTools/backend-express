@@ -11,8 +11,15 @@ class PackageService extends ResponseService implements IPackageService {
   }
 
   getPackages = async (): Promise<IServiceResponse> => {
-    const packages = await this.packageRepo.find().sort({ createdAt: -1 });
-    return this.serviceResponse(200, packages, "Packages fetched successfully");
+    const [packages, totalRecords] = await Promise.all([
+      this.packageRepo.find().sort({ createdAt: -1 }),
+      this.packageRepo.countDocuments(),
+    ]);
+    return this.serviceResponse(
+      200,
+      { data: packages, count: packages.length, totalRecords },
+      "Packages fetched successfully"
+    );
   };
 
   getPackageById = async (packageId: string): Promise<IServiceResponse> => {
@@ -24,7 +31,7 @@ class PackageService extends ResponseService implements IPackageService {
 
     return this.serviceResponse(
       200,
-      packageData,
+      { data: packageData },
       "Package fetched successfully"
     );
   };

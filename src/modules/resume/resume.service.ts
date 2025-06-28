@@ -32,7 +32,11 @@ class ResumeService extends ResponseService implements IResumeService {
       url: uploadRes?.secureUrl,
     });
 
-    return this.serviceResponse(200, resume, "Resume uploaded successfully");
+    return this.serviceResponse(
+      200,
+      { data: resume },
+      "Resume uploaded successfully"
+    );
   };
 }
 

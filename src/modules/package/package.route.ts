@@ -7,12 +7,13 @@ import {
   getPackageByIdSchema,
 } from "./package.validator";
 import validateBulkPayload from "../../middleware/validateBulkPayload";
+import pagination from "../../middleware/pagination";
 
 const router: Router = Router();
 
 router
   .route("/")
-  .get(packageController.getPackages)
+  .get(pagination, packageController.getPackages)
   .post(validatePayload(createPackageSchema), packageController.createPackage);
 
 router.post(

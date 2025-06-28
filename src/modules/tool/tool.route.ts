@@ -7,12 +7,13 @@ import {
   getToolByIdSchema,
 } from "./tool.validator";
 import validateBulkPayload from "../../middleware/validateBulkPayload";
+import pagination from "../../middleware/pagination";
 
 const router: Router = Router();
 
 router
   .route("/")
-  .get(toolController.getTools)
+  .get(pagination, toolController.getTools)
   .post(validatePayload(createToolSchema), toolController.createTool);
 
 router.post(

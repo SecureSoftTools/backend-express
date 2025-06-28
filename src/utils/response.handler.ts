@@ -1,4 +1,5 @@
 import { Response } from "express";
+import { IPayload } from "./interface";
 class ResponseService {
   constructor() {}
 
@@ -23,7 +24,7 @@ class ResponseService {
 
   protected serviceResponse = (
     statusCode: number,
-    payload: object,
+    payload: IPayload,
     message: string
   ) => {
     return { statusCode, payload, message };

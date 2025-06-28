@@ -33,7 +33,7 @@ class AiToolService extends ResponseService implements IAiToolService {
 
     return this.serviceResponse(
       200,
-      { coldEmailContent },
+      { data: { coldEmailContent } },
       "Cold email content generated successfully"
     );
   };
@@ -70,7 +70,11 @@ class AiToolService extends ResponseService implements IAiToolService {
 
     return this.serviceResponse(
       200,
-      { messageId: response.messageId },
+      {
+        data: {
+          messageId: response.messageId,
+        },
+      },
       "Cold email sent successfully"
     );
   };

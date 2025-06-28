@@ -14,7 +14,7 @@ export class ToolController extends ResponseService implements IToolController {
     next: NextFunction
   ): Promise<void> => {
     try {
-      const { message, payload, statusCode } = await this.service.getTools();
+      const { message, payload, statusCode } = await this.service.getTools(req.pagination);
       this.sendResponse(res, statusCode, payload, message);
     } catch (error) {
       next(error);

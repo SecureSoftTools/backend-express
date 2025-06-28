@@ -16,9 +16,15 @@ export enum AiTools {
   COLD_EMAILER = "cold_emailer",
 }
 
+export interface IPayload {
+  data?: object | object[];
+  count?: number;
+  totalRecords?: number;
+}
+
 export interface IServiceResponse {
   statusCode: number;
-  payload: object;
+  payload: IPayload;
   message: string;
 }
 

@@ -15,3 +15,9 @@ export const createToolsSchema: ArraySchema<ICreateTool[]> = Joi.array().items(
     icon: Joi.string().required(),
   })
 );
+
+export const getToolByIdSchema: ObjectSchema<{ toolId: string }> = Joi.object<{
+  toolId: string;
+}>({
+  toolId: Joi.string().required(),
+});

@@ -24,6 +24,22 @@ export class PackageController
     }
   };
 
+  getPackageById = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<void> => {
+    try {
+      const { packageId } = req.payload;
+
+      const { message, payload, statusCode } =
+        await this.service.getPackageById(packageId);
+      this.sendResponse(res, statusCode, payload, message);
+    } catch (error) {
+      next(error);
+    }
+  };
+
   createPackages = async (
     req: Request,
     res: Response,

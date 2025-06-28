@@ -21,7 +21,7 @@ class App {
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(
       cors({
-        origin: "http://localhost:5179",
+        origin: "http://localhost:5173",
       })
     );
     this.app.use(

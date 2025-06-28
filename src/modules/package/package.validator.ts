@@ -16,3 +16,10 @@ export const createPackagesSchema: ArraySchema<ICreatePackage[]> =
       version: Joi.string().required(),
     })
   );
+
+export const getPackageByIdSchema: ObjectSchema<{ packageId: string }> =
+  Joi.object<{
+    packageId: string;
+  }>({
+    packageId: Joi.string().required(),
+  });

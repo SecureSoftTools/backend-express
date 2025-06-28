@@ -21,6 +21,23 @@ export class ToolController extends ResponseService implements IToolController {
     }
   };
 
+  getToolById = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<void> => {
+    try {
+      const { toolId } = req.payload;
+
+      const { message, payload, statusCode } = await this.service.getToolById(
+        toolId
+      );
+      this.sendResponse(res, statusCode, payload, message);
+    } catch (error) {
+      next(error);
+    }
+  };
+
   createTool = async (
     req: Request,
     res: Response,

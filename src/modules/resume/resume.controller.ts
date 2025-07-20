@@ -26,6 +26,20 @@ class ResumeController extends ResponseService implements IResumeController {
       next(error);
     }
   };
+
+  fetchRankingResume = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<void> => {
+    try {
+      const { message, payload, statusCode } =
+        await this.service.fetchRankingResume(req.pagination);
+      this.sendResponse(res, statusCode, payload, message);
+    } catch (error) {
+      next(error);
+    }
+  };
 }
 
 const resumeController = new ResumeController();

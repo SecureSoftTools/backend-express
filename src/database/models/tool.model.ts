@@ -14,6 +14,14 @@ const toolSchema = new mongoose.Schema(
       type: String,
       require: true,
     },
+    slug: {
+      type: String,
+      required: true,
+    },
+    tagline: {
+      type: String,
+      required: false,
+    },
     users: [
       {
         type: Schema.Types.ObjectId,

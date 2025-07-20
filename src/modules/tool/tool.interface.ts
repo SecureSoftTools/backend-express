@@ -6,6 +6,7 @@ export interface IToolService {
   getToolById(toolId: string): Promise<IServiceResponse>;
   createTool(payload: ICreateTool): Promise<IServiceResponse>;
   createTools(payload: ICreateTool[]): Promise<IServiceResponse>;
+  updateToolById(payload: IUpdateTool): Promise<IServiceResponse>;
 }
 
 export interface IToolController {
@@ -13,10 +14,21 @@ export interface IToolController {
   getToolById(req: Request, res: Response, next: NextFunction): Promise<void>;
   createTool(req: Request, res: Response, next: NextFunction): Promise<void>;
   createTools(req: Request, res: Response, next: NextFunction): Promise<void>;
+  updateToolById(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<void>;
 }
 
 export interface ICreateTool {
   name: string;
   description: string;
   icon: string;
+  slug: string;
+  tagline?: string;
+}
+
+export interface IUpdateTool extends ICreateTool {
+  _id: string;
 }

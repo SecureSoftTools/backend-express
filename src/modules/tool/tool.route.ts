@@ -5,6 +5,7 @@ import {
   createToolSchema,
   createToolsSchema,
   getToolByIdSchema,
+  updateToolByIdSchema,
 } from "./tool.validator";
 import validateBulkPayload from "../../middleware/validateBulkPayload";
 import pagination from "../../middleware/pagination";
@@ -26,6 +27,12 @@ router.get(
   "/:toolId",
   validatePayload(getToolByIdSchema),
   toolController.getToolById
+);
+
+router.patch(
+  "/",
+  validatePayload(updateToolByIdSchema),
+  toolController.updateToolById
 );
 
 export default router;

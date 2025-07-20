@@ -1,7 +1,7 @@
 import resumeModel from "../../database/models/resume.model";
 import { uploadFileToCloudinary } from "../../utils/cloudinary";
 import { BadRequestError, InternalServerError } from "../../utils/errors";
-import { IServiceResponse } from "../../utils/interface";
+import { IPagination, IServiceResponse } from "../../utils/interface";
 import ResponseService from "../../utils/response.handler";
 import { IResumeService, IUploadResume } from "./resume.interface";
 
@@ -36,6 +36,22 @@ class ResumeService extends ResponseService implements IResumeService {
       200,
       { data: resume },
       "Resume uploaded successfully"
+    );
+  };
+
+  fetchRankingResume = async (
+    pagination: IPagination
+  ): Promise<IServiceResponse> => {
+    const { skip, take } = pagination;
+    const [resume, totalRecords] = await Promise.all([
+      this.resumeRepo.find().skip(skip).limit(take).sort({ createdAt: -1 }),
+      this.resumeRepo.countDocuments(),
+    ]);
+
+    return this.serviceResponse(
+      200,
+      { data: resume, count: resume.length, totalRecords },
+      "Resume fetched successfully"
     );
   };
 }

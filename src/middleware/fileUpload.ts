@@ -28,13 +28,13 @@ const fileFilter = (_req: Request, file: Express.Multer.File, cb: multer.FileFil
 
 const upload = multer({ storage, fileFilter });
 
-export default function fileUpload() {
+export default function fileUpload(fieldName: string) {
   return function (
     req: Request,
     res: Response,
     next: NextFunction
   ): void {
-    upload.single("image")(req, res, (err: any) => {
+    upload.single(fieldName)(req, res, (err: any) => {
       if (err instanceof multer.MulterError) {
         return next(new Error(`Multer Error: ${err.message}`));
       } else if (err) {

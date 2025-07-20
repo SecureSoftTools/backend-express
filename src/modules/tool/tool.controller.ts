@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import ResponseService from "../../utils/response.handler";
-import { ICreateTool, IToolController } from "./tool.interface";
+import { ICreateTool, IToolController, IUpdateTool } from "./tool.interface";
 import toolService from "./tool.service";
 
 export class ToolController extends ResponseService implements IToolController {
@@ -14,7 +14,9 @@ export class ToolController extends ResponseService implements IToolController {
     next: NextFunction
   ): Promise<void> => {
     try {
-      const { message, payload, statusCode } = await this.service.getTools(req.pagination);
+      const { message, payload, statusCode } = await this.service.getTools(
+        req.pagination
+      );
       this.sendResponse(res, statusCode, payload, message);
     } catch (error) {
       next(error);
@@ -64,6 +66,21 @@ export class ToolController extends ResponseService implements IToolController {
       const { message, payload, statusCode } = await this.service.createTools(
         data
       );
+      this.sendResponse(res, statusCode, payload, message);
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  updateToolById = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<void> => {
+    try {
+      const data: IUpdateTool = req.payload;
+      const { message, payload, statusCode } =
+        await this.service.updateToolById(data);
       this.sendResponse(res, statusCode, payload, message);
     } catch (error) {
       next(error);

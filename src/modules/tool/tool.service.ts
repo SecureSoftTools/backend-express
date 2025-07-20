@@ -1,8 +1,8 @@
 import ResponseService from "../../utils/response.handler";
-import { ICreateTool, IToolService } from "./tool.interface";
+import { ICreateTool, IToolService, IUpdateTool } from "./tool.interface";
 import toolModel from "../../database/models/tool.model";
 import { IPagination, IServiceResponse } from "../../utils/interface";
-import { Types } from "mongoose";
+import { Mongoose, Types } from "mongoose";
 import { BadRequestError } from "../../utils/errors";
 
 class ToolService extends ResponseService implements IToolService {
@@ -46,6 +46,16 @@ class ToolService extends ResponseService implements IToolService {
   createTools = async (payload: ICreateTool[]): Promise<IServiceResponse> => {
     await this.toolRepo.insertMany(payload);
     return this.serviceResponse(200, {}, "Tools created successfully");
+  };
+
+  updateToolById = async (payload: IUpdateTool): Promise<IServiceResponse> => {
+    const { _id, ...updateData } = payload;
+
+    await this.toolRepo.updateOne(
+      { _id: new Types.ObjectId(_id) },
+      { $set: updateData }
+    );
+    return this.serviceResponse(200, {}, "Tool updated successfully");
   };
 }
 

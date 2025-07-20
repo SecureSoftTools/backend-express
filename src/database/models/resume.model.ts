@@ -15,6 +15,10 @@ const resumeSchema = new mongoose.Schema(
       default: true,
       required: false,
     },
+    rank: {
+      type: String,
+      required: true,
+    },
     users: [
       {
         type: Schema.Types.ObjectId,
